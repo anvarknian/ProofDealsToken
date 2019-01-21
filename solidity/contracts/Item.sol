@@ -7,9 +7,9 @@ contract Item is ERC721{
     struct Item{
         string name; // Name of the Item
         uint price; // Item price
-        uint id;  // id for now is date
-        uint company;
-        uint paymentCheck;
+        uint date;  // id for now is date
+        string company;
+        string paymentCheck;
     }
     
     Item[] public items; // First Item has Index 0
@@ -19,10 +19,10 @@ contract Item is ERC721{
         owner = msg.sender; // The Sender is the Owner; Ethereum Address of the Owner
     }
     
-    function createItem(string _name, address _to) public{
+    function createItem(string _name, uint _price, uint _date, string _company, string _paymentCheck ,address _to) public{
         require(owner == msg.sender); // Only the Owner can create Items
         uint id = items.length; // Item ID = Length of the Array Items
-        items.push(Item(_name,5,1));// Item ("Каток",200$,4122018)
+        items.push(Item(_name,_price,_date,_company,paymentCheck));// Item ("Каток",200$,4122018)
         _mint(_to,id); // Assigns the Token to the Ethereum Address that is specified
     }
     
